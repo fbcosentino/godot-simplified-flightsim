@@ -277,6 +277,7 @@ The following methods are implemented:
 
 - `load_energy(value)`: charges energy into the container directly. Called internally from aircraft's energy distribution system. Calling from another module loads energy without using the aircraft's energy distribution system and even if the container is disconnected. Avoid calling this manually unless you have a very good reason (e.g. Thor decides to charge a battery using lightning from his hammer like in _Avengers: Age of Ultron_)
 
+- `energy_container_toggle_active()`: toggles the `Container Active` value between `true` = connected and `false` = disconnected
 
 This module implements the `update_interface(values)` signal.
 
@@ -346,7 +347,7 @@ There can be only one `Steering` module at a time in an aircraft. All `Steering`
 
 ![](./documentation_images/steering_distance.png)
 
-- `Uses Energy`: if `true`, using this steering system consumes energy. If then energy is not available, module ceases to work
+- `Uses Energy`: if `true`, using this steering system consumes energy. If then the energy is not available, module ceases to work
 
 - `Energy Type`: if `Uses Energy` is set, this is the energy type requested from the aircraft's energy system
 
