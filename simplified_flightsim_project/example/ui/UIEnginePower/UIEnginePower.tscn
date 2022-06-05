@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://example/ui/panel_bg9.png" type="Texture" id=1]
+[ext_resource path="res://example/ui/UIEnginePower/UIEnginePower.gd" type="Script" id=2]
+
+[node name="UIEnginePower" type="Control"]
+margin_right = 64.0
+margin_bottom = 128.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Panel" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PowerBar" type="ColorRect" parent="Panel"]
+margin_left = 30.0
+margin_top = 22.0
+margin_right = 34.0
+margin_bottom = 106.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="ColorRect" parent="Panel/PowerBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -16.0
+margin_top = 80.0
+margin_right = 16.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 12.0
+margin_top = 5.0
+margin_right = 54.0
+margin_bottom = 19.0
+text = "Engine"
+
+[node name="OnlineBox" type="ColorRect" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -12.5
+margin_top = -16.0
+margin_right = 12.5
+margin_bottom = -8.0
+color = Color( 1, 0, 0, 1 )

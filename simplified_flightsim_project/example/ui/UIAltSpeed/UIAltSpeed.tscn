@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://example/ui/UIAltSpeed/UIAltSpeed.gd" type="Script" id=1]
+[ext_resource path="res://example/ui/panel_bg9.png" type="Texture" id=2]
+[ext_resource path="res://example/ui/back_bg9.png" type="Texture" id=3]
+
+[node name="UIAltSpeed" type="Control"]
+margin_right = 111.0
+margin_bottom = 128.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 5.0
+margin_right = -10.0
+margin_bottom = 19.0
+text = "Altitude"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Altitude" type="NinePatchRect" parent="Panel"]
+margin_left = 7.0
+margin_top = 25.0
+margin_right = 103.0
+margin_bottom = 55.0
+texture = ExtResource( 3 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="InnerPanel" type="Control" parent="Panel/Altitude"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_clip_content = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BG" type="ColorRect" parent="Panel/Altitude/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0705882, 0.0705882, 0.0745098, 1 )
+
+[node name="ValueLabel" type="Label" parent="Panel/Altitude/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 65.0
+margin_right = -10.0
+margin_bottom = 79.0
+text = "Speed"
+align = 1
+
+[node name="Speed" type="NinePatchRect" parent="Panel"]
+margin_left = 7.0
+margin_top = 85.0
+margin_right = 103.0
+margin_bottom = 115.0
+texture = ExtResource( 3 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="InnerPanel" type="Control" parent="Panel/Speed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_clip_content = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BG" type="ColorRect" parent="Panel/Speed/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0705882, 0.0705882, 0.0745098, 1 )
+
+[node name="ValueLabel" type="Label" parent="Panel/Speed/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}

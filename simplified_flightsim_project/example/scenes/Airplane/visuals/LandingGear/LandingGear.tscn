@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://example/scenes/Airplane/visuals/LandingGear/LandingGear.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+radial_segments = 12
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.3
+height = 0.18
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Deploy"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wheel1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -105, 0, 0 ), Vector3( 15, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wheel2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 69.6231, -139.929, -134.111 ), Vector3( -15, 0, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Wheel3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 69.6231, 139.929, 134.111 ), Vector3( -15, 0, 15 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Stow"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wheel1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 15, 0, 0 ), Vector3( -105, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wheel2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -15, 0, -15 ), Vector3( 69.6231, -139.929, -134.111 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Wheel3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -15, 0, 15 ), Vector3( 69.6231, 139.929, 134.111 ) ]
+}
+
+[node name="LandingGear" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Wheel1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, -0.475525, -1.4969 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.433123, 0 )
+mesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel1/MeshInstance"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.441058, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Wheel2" type="Spatial" parent="."]
+transform = Transform( 0.965926, 0.258819, 0, -0.25, 0.933013, 0.258819, 0.0669873, -0.25, 0.965926, -0.3, -0.475768, 0.0241101 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.433123, 0 )
+mesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel2/MeshInstance"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.441058, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Wheel3" type="Spatial" parent="."]
+transform = Transform( 0.965926, -0.258819, 0, 0.25, 0.933013, 0.258819, -0.0669873, -0.25, 0.965926, 0.3, -0.475768, 0.0241101 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.433123, 0 )
+mesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wheel3/MeshInstance"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.441058, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Deploy = SubResource( 6 )
+anims/Stow = SubResource( 5 )

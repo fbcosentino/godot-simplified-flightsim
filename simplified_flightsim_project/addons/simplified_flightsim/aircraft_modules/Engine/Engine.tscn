@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/simplified_flightsim/aircraft_modules/Engine/Engine.gd" type="Script" id=1]
+[ext_resource path="res://example/sfx/aircraft_modules/engine/engine_start.wav" type="AudioStream" id=2]
+[ext_resource path="res://example/sfx/aircraft_modules/engine/engine.ogg" type="AudioStream" id=3]
+
+[node name="Engine" type="Spatial"]
+script = ExtResource( 1 )
+EngineSoundLoop = ExtResource( 3 )
+EngineSoundStart = ExtResource( 2 )

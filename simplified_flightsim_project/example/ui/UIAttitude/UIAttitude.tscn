@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://example/ui/UIAttitude/UIAttitude.gd" type="Script" id=1]
+[ext_resource path="res://example/ui/panel_bg9.png" type="Texture" id=2]
+[ext_resource path="res://example/ui/back_bg9.png" type="Texture" id=3]
+[ext_resource path="res://example/ui/UIAttitude/scale.png" type="Texture" id=4]
+[ext_resource path="res://example/ui/UIAttitude/compass2.png" type="Texture" id=5]
+
+[node name="UIAttitude" type="Control"]
+margin_right = 216.0
+margin_bottom = 128.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2.0
+texture = ExtResource( 2 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 5.0
+margin_right = -10.0
+margin_bottom = 19.0
+text = "Attitude"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Horizon" type="NinePatchRect" parent="Panel"]
+margin_left = 7.0
+margin_top = 21.0
+margin_right = 103.0
+margin_bottom = 117.0
+texture = ExtResource( 3 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InnerPanel" type="Control" parent="Panel/Horizon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_clip_content = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BG" type="ColorRect" parent="Panel/Horizon/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.360784, 0.54902, 0.764706, 1 )
+
+[node name="CenterRef" type="Control" parent="Panel/Horizon/InnerPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ground" type="ColorRect" parent="Panel/Horizon/InnerPanel/CenterRef"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -72.0
+margin_right = 72.0
+margin_bottom = 144.0
+color = Color( 0.501961, 0.34902, 0.0901961, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Scale" type="TextureRect" parent="Panel/Horizon/InnerPanel/CenterRef/Ground"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_top = -72.0
+margin_right = -20.0
+margin_bottom = 72.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Scale2" type="TextureRect" parent="Panel/Horizon/InnerPanel/CenterRef/Ground"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 32.0
+margin_top = 72.0
+margin_right = 44.0
+margin_bottom = 216.0
+rect_rotation = 180.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="PlaneHorizon" type="ColorRect" parent="Panel/Horizon/InnerPanel/CenterRef"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -1.0
+margin_right = 24.0
+margin_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Compass" type="NinePatchRect" parent="Panel"]
+margin_left = 111.0
+margin_top = 21.0
+margin_right = 207.0
+margin_bottom = 117.0
+texture = ExtResource( 3 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="InnerPanel" type="Control" parent="Panel/Compass"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_clip_content = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BG" type="ColorRect" parent="Panel/Compass/InnerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0705882, 0.0705882, 0.0745098, 1 )
+
+[node name="CenterRef" type="Control" parent="Panel/Compass/InnerPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Compass/InnerPanel/CenterRef"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -48.0
+margin_right = 48.0
+margin_bottom = 48.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="Panel/Compass/InnerPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -2.0
+margin_top = 30.0
+margin_right = 2.0
+margin_bottom = 46.0
+
+[node name="ColorRect2" type="ColorRect" parent="Panel/Compass/InnerPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -1.0
+margin_right = 1.0
+margin_bottom = 30.0
+color = Color( 1, 1, 1, 0.501961 )

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/simplified_flightsim/Aircraft/Aircraft.gd" type="Script" id=1]
+
+[node name="Aircraft" type="RigidBody"]
+gravity_scale = 0.0
+contacts_reported = 3
+contact_monitor = true
+angular_damp = 1.0
+script = ExtResource( 1 )

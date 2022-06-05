@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://example/scenes/Airplane/visuals/Temperature/Temperature.gd" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+radial_segments = 32
+rings = 16
+is_hemisphere = true
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.552632, 0.745614, 0.807018, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.657143, 0.188672, 0, 1, 1, 0.651581, 0.234375, 1, 1, 0.850464, 0.6875, 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+gradient = SubResource( 2 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_texture = SubResource( 3 )
+
+[node name="Temperature" type="Spatial"]
+visible = false
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 3, 0, 0, 0, -2.18557e-07, 1, 0, -5, -4.37114e-08, 0, 1.31134e-07, 6.8877 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )

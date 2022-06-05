@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://example/scenes/Airplane/visuals/Steering/Steering.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 0.1, 0.5 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.1, 0.7, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1.5, 0.1, 0.5 )
+
+[node name="Steering" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Elevator" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041481, 2.58915 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.999999, 0, 0.264938 )
+mesh = SubResource( 1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Elevator"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.264938 )
+mesh = SubResource( 1 )
+
+[node name="Rudder" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041481, 2.58915 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Rudder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01328e-06, 0.784454, 0.264938 )
+mesh = SubResource( 3 )
+
+[node name="AileronLeft" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305994, 0.21299 )
+
+[node name="MeshInstance" type="MeshInstance" parent="AileronLeft"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 0, 0.262 )
+mesh = SubResource( 2 )
+
+[node name="AileronRight" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305994, 0.21299 )
+
+[node name="MeshInstance" type="MeshInstance" parent="AileronRight"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24601, 0, 0.262 )
+mesh = SubResource( 2 )

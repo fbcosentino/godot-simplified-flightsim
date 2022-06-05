@@ -1,0 +1,127 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "RigidBody",
+"class": "Aircraft",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/Aircraft/Aircraft.gd"
+}, {
+"base": "Node",
+"class": "AircraftModule",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/base_module.gd"
+}, {
+"base": "Spatial",
+"class": "AircraftModuleSpatial",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/base_module_spatial.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_ControlEnergyContainer",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Controls/ControlEnergyContainer.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_ControlEngine",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Controls/ControlEngine.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_ControlFlaps",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Controls/ControlFlaps.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_ControlLandingGear",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Controls/ControlLandingGear.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_ControlSteering",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Controls/ControlSteering.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_EnergyContainer",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/EnergyContainer/EnergyContainer.gd"
+}, {
+"base": "AircraftModuleSpatial",
+"class": "AircraftModule_Engine",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Engine/Engine.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_Flaps",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Flaps/Flaps.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_InstrumentAttitude",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Instruments/InstrumentAttitude.gd"
+}, {
+"base": "AircraftModuleSpatial",
+"class": "AircraftModule_LandingGear",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/LandingGear/LandingGear.gd"
+}, {
+"base": "AircraftModule",
+"class": "AircraftModule_Steering",
+"language": "GDScript",
+"path": "res://addons/simplified_flightsim/aircraft_modules/Steering/Steering.gd"
+} ]
+_global_script_class_icons={
+"Aircraft": "res://addons/simplified_flightsim/Aircraft/Aircraft_icon.png",
+"AircraftModule": "res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Node_icon.png",
+"AircraftModuleSpatial": "res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Spatial_icon.png",
+"AircraftModule_ControlEnergyContainer": "",
+"AircraftModule_ControlEngine": "",
+"AircraftModule_ControlFlaps": "",
+"AircraftModule_ControlLandingGear": "",
+"AircraftModule_ControlSteering": "",
+"AircraftModule_EnergyContainer": "",
+"AircraftModule_Engine": "",
+"AircraftModule_Flaps": "",
+"AircraftModule_InstrumentAttitude": "",
+"AircraftModule_LandingGear": "",
+"AircraftModule_Steering": ""
+}
+
+[application]
+
+config/name="Flight Sim"
+config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/simplified_flightsim/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+quality/filters/msaa=2
+environment/default_environment="res://default_env.tres"
