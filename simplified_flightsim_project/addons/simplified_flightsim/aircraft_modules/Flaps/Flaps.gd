@@ -70,8 +70,8 @@ func process_physic_frame(delta):
 	
 	# Apply effects
 	if flap_position > 0:
-		aircraft.lift_intensity *= LiftFlapFactor * flap_position
-		aircraft.drag_intensity_vector.z *= DragFlapFactor * flap_position
+		aircraft.lift_intensity *= lerp(1.0, LiftFlapFactor, flap_position)
+		aircraft.drag_intensity_vector.z *= lerp(1.0, DragFlapFactor, flap_position)
 
 
 
