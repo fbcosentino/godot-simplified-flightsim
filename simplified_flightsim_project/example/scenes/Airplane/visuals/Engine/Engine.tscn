@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://example/scenes/Airplane/visuals/Engine/Engine.gd" type="Script" id=1]
+[ext_resource path="res://example/textures/fire_gradient.png" type="Texture" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 0.3
@@ -9,20 +10,11 @@ radial_segments = 16
 rings = 8
 is_hemisphere = true
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.140351, 0.350877, 0.535088, 0.929825 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.264648, 0, 0, 1, 0.749023, 0.637697, 0.00877762, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture2D" id=5]
-gradient = SubResource( 2 )
-width = 1
-fill_to = Vector2( 0.25, 1 )
-
 [sub_resource type="SpatialMaterial" id=4]
 flags_unshaded = true
 params_blend_mode = 1
 params_cull_mode = 1
-albedo_texture = SubResource( 5 )
+albedo_texture = ExtResource( 2 )
 
 [node name="Engine" type="Spatial"]
 script = ExtResource( 1 )
