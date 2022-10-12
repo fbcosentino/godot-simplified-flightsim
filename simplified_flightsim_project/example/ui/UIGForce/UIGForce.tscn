@@ -1,0 +1,170 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://example/ui/UIGForce/UIGForce.gd" type="Script" id=1]
+[ext_resource path="res://example/ui/panel_bg9.png" type="Texture" id=2]
+[ext_resource path="res://example/ui/back_bg9.png" type="Texture" id=3]
+[ext_resource path="res://example/ui/back_fg9.png" type="Texture" id=4]
+[ext_resource path="res://example/fonts/Pixel.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 5 )
+
+[node name="UIGForce" type="Control"]
+margin_right = 48.0
+margin_bottom = 128.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Panel" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 43.0
+margin_bottom = 19.0
+text = "g"
+align = 1
+
+[node name="Bar" type="TextureProgress" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -39.0
+margin_right = -3.0
+margin_bottom = 54.0
+min_value = -1.0
+max_value = 4.0
+step = 0.01
+value = 3.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+fill_mode = 3
+tint_progress = Color( 0.407843, 0.592157, 0.6, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+
+[node name="Markm1g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 116.0
+margin_right = 30.0
+margin_bottom = 118.0
+color = Color( 1, 0.580392, 0.466667, 1 )
+
+[node name="Label" type="Label" parent="Panel/Markm1g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "-1"
+align = 1
+valign = 1
+
+[node name="Mark0g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 98.0
+margin_right = 30.0
+margin_bottom = 100.0
+color = Color( 1, 0.929412, 0.466667, 1 )
+
+[node name="Label" type="Label" parent="Panel/Mark0g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Mark1g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 80.0
+margin_right = 30.0
+margin_bottom = 82.0
+
+[node name="Label" type="Label" parent="Panel/Mark1g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Mark2g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 61.0
+margin_right = 30.0
+margin_bottom = 63.0
+color = Color( 1, 0.929412, 0.466667, 1 )
+
+[node name="Label" type="Label" parent="Panel/Mark2g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Mark3g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 42.0
+margin_right = 30.0
+margin_bottom = 44.0
+color = Color( 1, 0.580392, 0.466667, 1 )
+
+[node name="Label" type="Label" parent="Panel/Mark3g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Mark4g" type="ColorRect" parent="Panel"]
+margin_left = 22.0
+margin_top = 24.0
+margin_right = 30.0
+margin_bottom = 26.0
+color = Color( 1, 0.211765, 0.211765, 1 )
+
+[node name="Label" type="Label" parent="Panel/Mark4g"]
+margin_left = 8.0
+margin_top = -3.0
+margin_right = 21.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.623529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "4"
+align = 1
+valign = 1

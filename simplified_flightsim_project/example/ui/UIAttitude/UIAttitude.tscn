@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://example/ui/UIAttitude/UIAttitude.gd" type="Script" id=1]
 [ext_resource path="res://example/ui/panel_bg9.png" type="Texture" id=2]
 [ext_resource path="res://example/ui/back_bg9.png" type="Texture" id=3]
 [ext_resource path="res://example/ui/UIAttitude/scale.png" type="Texture" id=4]
 [ext_resource path="res://example/ui/UIAttitude/compass2.png" type="Texture" id=5]
+[ext_resource path="res://example/ui/UIGForce/UIGForce.tscn" type="PackedScene" id=6]
 
 [node name="UIAttitude" type="Control"]
 margin_right = 216.0
@@ -183,3 +184,10 @@ margin_left = -1.0
 margin_right = 1.0
 margin_bottom = 30.0
 color = Color( 1, 1, 1, 0.501961 )
+
+[node name="UIGForce" parent="." instance=ExtResource( 6 )]
+margin_left = 216.0
+margin_right = 264.0
+__meta__ = {
+"_edit_group_": true
+}

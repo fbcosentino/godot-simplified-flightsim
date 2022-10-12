@@ -4,6 +4,7 @@ extends RigidBody
 signal crashed(impact_velocity)
 signal parked
 signal moved
+signal stall_changed(state)
 signal atmospheric_calculations_requested
 
 const AIR_DENSITY_RHO = 1.225
@@ -12,6 +13,7 @@ const ZERO_C_IN_K = 273.15
 const STEFAN_BOLTZMANN = 5.670374419 * 0.00000001 # σ = 5.670374419... × 10^−8 [W⋅m^−2⋅K^−4]
 const RATIO_OF_SPECIFIC_HEATS = 1.4 # for dry air at 300K
 const SPEED_OF_SOUND = 343.0 # mach 1
+const EARTH_GRAVITY = 9.8 # for g-force calculation
 
 # Lift factor combines lift coefficient and wing area
 # Must be higher than DragFactor.z or the plane won't take off
@@ -26,6 +28,7 @@ export(float) var DragHeatRate = 0.1
 export(float) var RadiationCoolingRate = 1.0
 
 export(float) var MachSpeedScaling = 1.0
+export(float) var GForceFactor = 1.0 # Used by both G-Force and Load Factor
 
 export(float) var MaxTemperature = 900.0 # Celsius
 export(bool) var EnableTemperatureCalculations = false
@@ -55,6 +58,8 @@ onready var world_ref : Spatial = get_node_or_null(WorldOrientationReference)
 var internal_world_reference : Spatial
 
 var last_global_position = null
+var last_linear_velocity = null
+var last_angular_velocity = null
 
 var air_velocity_vector = Vector3.ZERO
 var air_velocity = 0.0
@@ -69,11 +74,14 @@ var location_in_world_frame = Vector3.ZERO
 var direction_in_world_frame = Vector3.ZERO
 var stagnation_temperature_K = 0.0
 var local_temperature = AirTemperature # Celsius
+var local_load_factor = 1.0
+var local_g_force = 1.0
 
 var touching_shapes = []
 var is_safe_touching = false
 var is_unsafe_touching = false
 var is_velocity_nonzero = false
+var is_stalled = false
 
 ##############################################################################
 #  SYSTEM SETUP
@@ -310,9 +318,14 @@ func process_physics_frame(delta):
 	var forward_vector = -global_transform.basis.z # nose of plane in global frame
 	var right_vector = global_transform.basis.x # right wing of plane in global frame
 	
+	# Both are in global coordinates
+	var linear_acceleration = (linear_velocity - last_linear_velocity) / delta if last_linear_velocity != null else Vector3.ZERO
+	var angular_acceleration = (angular_velocity - last_angular_velocity) / delta if last_angular_velocity != null else Vector3.ZERO
+	
 	# ================
 	# LIFT
 	
+	var lift_vector = up_vector * lift_intensity
 	add_force(up_vector * lift_intensity, forward_vector * LiftPointDistance)
 	
 	
@@ -363,9 +376,30 @@ func process_physics_frame(delta):
 	# ================
 	# GRAVITY
 	
+	var weight_vector = Vector3.ZERO
 	if Gravity > 0:
 		var global_gravity_direction = to_global(local_gravity_direction) - global_transform.origin
-		add_central_force(global_gravity_direction * weight * Gravity)
+		weight_vector = global_gravity_direction * weight * Gravity
+		add_central_force(weight_vector)
+	
+	# Load Factor and G-Force
+	# load factor is based on the planet's gravity, so level flight always have load factor of 1.0
+	# g is always based on Earth gravity, so a planet where gravity factor is 0.5 would have a 
+	# level flight g force of 0.5 instead of 1
+	
+	var vertical_acceleration_normalized = (up_vector.dot(linear_acceleration) / EARTH_GRAVITY) * GForceFactor # Positive means to the aircraft roof
+	
+	local_load_factor = (1.0 + vertical_acceleration_normalized/Gravity) if Gravity > 0 else 0.0
+	local_g_force = (Gravity + vertical_acceleration_normalized) if Gravity > 0 else 0.0
+	
+	# ================
+	# STALL
+	
+	var lift_weight_balance = (lift_vector.length_squared() - weight_vector.length_squared())
+	var is_stall_now = lift_weight_balance < 0
+	if is_stalled != is_stall_now:
+		is_stalled = is_stall_now
+		emit_signal("stall_changed", is_stalled)
 	
 	
 	# ================
@@ -398,7 +432,8 @@ func process_physics_frame(delta):
 		angular_velocity = Vector3.ZERO
 		emit_signal("crashed", ang_vel)
 	
-
+	last_linear_velocity = linear_velocity
+	last_angular_velocity = angular_velocity
 	_process_frame_count += 1
 
 

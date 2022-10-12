@@ -35,6 +35,8 @@ func request_update_interface():
 		"bearing": rad2deg(current_bearing),
 		"alt": aircraft.local_altitude,
 		"speed": aircraft.air_velocity,
+		"g": aircraft.local_g_force,
+		"load_factor": aircraft.local_load_factor,
 	}
 	emit_signal("update_interface", message)
 

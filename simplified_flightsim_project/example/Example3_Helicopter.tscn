@@ -720,13 +720,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -225.0
+margin_left = -275.0
 margin_top = -137.0
-margin_right = -9.0
+margin_right = -59.0
 margin_bottom = -9.0
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="UIAltSpeed" parent="Interface" instance=ExtResource( 5 )]
 anchor_left = 1.0
@@ -808,9 +805,19 @@ valign = 1
 anims/RESET = SubResource( 31 )
 anims/Show = SubResource( 32 )
 
+[node name="BtnBack" type="Button" parent="Interface"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 163.0
+margin_bottom = 24.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "<- Back to example list"
+
 [connection signal="crashed" from="Aircraft" to="." method="_on_Aircraft_crashed"]
 [connection signal="moved" from="Aircraft" to="." method="_on_Aircraft_moved"]
 [connection signal="parked" from="Aircraft" to="." method="_on_Aircraft_parked"]
 [connection signal="update_interface" from="Aircraft/Engine" to="Aircraft/Model/MovingParts/HeliPropellerTop" method="_on_Engine_update_interface"]
 [connection signal="update_interface" from="Aircraft/Engine" to="Aircraft/Model/MovingParts/HeliPropellerSide" method="_on_Engine_update_interface"]
 [connection signal="update_interface" from="Aircraft/LandingGear" to="Aircraft/Model/MovingParts/LandingGear" method="_on_LandingGear_update_interface"]
+[connection signal="pressed" from="Interface/BtnBack" to="." method="_on_BtnBack_pressed"]

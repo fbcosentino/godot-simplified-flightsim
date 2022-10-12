@@ -872,13 +872,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -225.0
+margin_left = -271.0
 margin_top = -267.0
-margin_right = -9.0
+margin_right = -55.0
 margin_bottom = -139.0
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="UIAltSpeed" parent="Interface" instance=ExtResource( 12 )]
 anchor_left = 1.0
@@ -1001,6 +998,15 @@ TargetNode = NodePath("../../../../../Aircraft")
 transform = Transform( 0.258819, -0.25, 0.933013, 0, 0.965926, 0.258819, -0.965926, -0.0669873, 0.25, 7, 2, 2 )
 fov = 50.0
 
+[node name="BtnBack" type="Button" parent="Interface"]
+margin_left = 164.0
+margin_top = 4.0
+margin_right = 323.0
+margin_bottom = 24.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "<- Back to example list"
+
 [connection signal="atmospheric_calculations_requested" from="Aircraft" to="." method="_on_Aircraft_atmospheric_calculations_requested"]
 [connection signal="crashed" from="Aircraft" to="." method="_on_Aircraft_crashed"]
 [connection signal="moved" from="Aircraft" to="." method="_on_Aircraft_moved"]
@@ -1014,3 +1020,4 @@ fov = 50.0
 [connection signal="body_exited" from="Planet1" to="." method="_on_Planet1_body_exited"]
 [connection signal="body_entered" from="Planet2" to="." method="_on_Planet2_body_entered"]
 [connection signal="body_exited" from="Planet2" to="." method="_on_Planet1_body_exited"]
+[connection signal="pressed" from="Interface/BtnBack" to="." method="_on_BtnBack_pressed"]

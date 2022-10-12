@@ -48,3 +48,7 @@ func _physics_process(delta):
 		if is_aircraft_full:
 			is_reloading_fuel = false
 			print("REFUEL COMPLETE")
+
+
+func _on_BtnBack_pressed():
+	get_tree().change_scene("res://example/ExampleList.tscn")

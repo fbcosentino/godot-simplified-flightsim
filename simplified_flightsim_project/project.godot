@@ -99,6 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Flight Sim"
+run/main_scene="res://example/ExampleList.tscn"
 config/icon="res://icon.png"
 
 [display]

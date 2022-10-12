@@ -668,13 +668,10 @@ __meta__ = {
 }
 
 [node name="UIAltSpeed" parent="Interface" instance=ExtResource( 22 )]
-margin_left = 615.0
+margin_left = 671.0
 margin_top = 465.0
-margin_right = 726.0
+margin_right = 782.0
 margin_bottom = 593.0
-__meta__ = {
-"_edit_lock_": true
-}
 AircraftNode = NodePath("../../Aircraft")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Interface"]
@@ -719,6 +716,15 @@ margin_right = 217.0
 margin_bottom = -160.0
 text = "Park on runway to refuel tank"
 
+[node name="BtnBack" type="Button" parent="Interface"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 163.0
+margin_bottom = 24.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "<- Back to example list"
+
 [connection signal="crashed" from="Aircraft" to="." method="_on_Aircraft_crashed"]
 [connection signal="moved" from="Aircraft" to="." method="_on_Aircraft_moved"]
 [connection signal="parked" from="Aircraft" to="." method="_on_Aircraft_parked"]
@@ -726,3 +732,4 @@ text = "Park on runway to refuel tank"
 [connection signal="update_interface" from="Aircraft/Steering" to="Aircraft/Model/MovingParts/Steering" method="_on_Steering_update_interface"]
 [connection signal="update_interface" from="Aircraft/Flaps" to="Aircraft/Model/MovingParts/Flaps" method="_on_Flaps_update_interface"]
 [connection signal="update_interface" from="Aircraft/LandingGear" to="Aircraft/Model/MovingParts/LandingGear" method="_on_LandingGear_update_interface"]
+[connection signal="pressed" from="Interface/BtnBack" to="." method="_on_BtnBack_pressed"]
