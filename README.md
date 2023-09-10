@@ -2,6 +2,8 @@
 
 This addon in a simple flight simulation system, in pure GDScript, and generic enough to cover several types of aircrafts and spacecrafts.
 
+_The `main` branch is for Godot 4. If you are using Godot 3.x, check branch `3.x`._
+
 There are very realistic flight simulation libraries elsewhere (usually in C), but if you only want your players to _vooosh_ and _pew pew_ around, a scientifically precise library is overkill. So this one is optimized for games, not pilot training.
 
 ### Simplified 
