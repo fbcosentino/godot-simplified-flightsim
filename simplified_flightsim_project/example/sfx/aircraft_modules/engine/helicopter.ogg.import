@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/helicopter.ogg-8e097c51814366f99e3ed5f9e1536aff.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d0sxpsoxdbfr2"
+path="res://.godot/imported/helicopter.ogg-8e097c51814366f99e3ed5f9e1536aff.oggvorbisstr"
 
 [deps]
 
 source_file="res://example/sfx/aircraft_modules/engine/helicopter.ogg"
-dest_files=[ "res://.import/helicopter.ogg-8e097c51814366f99e3ed5f9e1536aff.oggstr" ]
+dest_files=["res://.godot/imported/helicopter.ogg-8e097c51814366f99e3ed5f9e1536aff.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

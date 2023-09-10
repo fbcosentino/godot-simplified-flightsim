@@ -1,7 +1,11 @@
+# This script is just an example of one way to implement a control module
+# the way input is handled here is by no means a requirement whatsoever
+# You can (and are actually expected to) modify this or write your own module
+
 extends AircraftModule
 class_name AircraftModule_ControlFlaps
 
-export(bool) var ControlActive = true
+@export var ControlActive: bool = true
 
 # There should be only one flaps and one flaps control in the aircraft
 var flaps_module = null

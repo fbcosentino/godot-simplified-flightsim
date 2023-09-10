@@ -6,24 +6,24 @@ class_name AircraftModule_LandingGear
 
 signal update_interface(values)
 
-export(NodePath) var GearCollisionShape
-onready var landing_gear_collision_shape = get_node_or_null(GearCollisionShape)
+@export var GearCollisionShape: NodePath
+@onready var landing_gear_collision_shape = get_node_or_null(GearCollisionShape)
 
 enum LandingGearInitialStates {
 	STOWED,
 	DEPLOYED
 }
-export(LandingGearInitialStates) var InitialState = LandingGearInitialStates.STOWED
+@export var InitialState: LandingGearInitialStates = LandingGearInitialStates.STOWED
 
-export(float) var DeployStowTime = 1.0 # secs
-export(AudioStream) var DeploySound
-export(AudioStream) var StowSound
+@export var DeployStowTime: float = 1.0 # secs
+@export var DeploySound: AudioStream
+@export var StowSound: AudioStream
 
 # You don't really *need* to use this property, as any node can receive the
 # signals. This is just a helper to automatically connect all possible signals
 # assigning the node just once 
-export(NodePath) var UINode
-onready var ui_node = get_node_or_null(UINode)
+@export var UINode: NodePath
+@onready var ui_node = get_node_or_null(UINode)
 
 var sfx_player = null
 
@@ -38,14 +38,14 @@ var is_stowed = true
 func _ready():
 	add_child(move_timer)
 	move_timer.one_shot = true
-	move_timer.connect("timeout", self, "_on_move_timer_timeout")
+	move_timer.connect("timeout", Callable(self, "_on_move_timer_timeout"))
 	
 	if DeploySound or StowSound:
 		sfx_player = AudioStreamPlayer.new()
 		add_child(sfx_player)
 	
 	if ui_node:
-		connect("update_interface", ui_node, "update_interface")
+		connect("update_interface", Callable(ui_node, "update_interface"))
 	
 	ModuleType = "landing_gear"
 

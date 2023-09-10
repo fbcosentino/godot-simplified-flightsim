@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 
@@ -7,10 +7,10 @@ extends Spatial
 # as the UI controls
 
 
-onready var blades = $Blades
+@onready var blades = $Blades
 
-export(float) var AccelSpeed = 0.5
-export(float) var MaxRotationSpeed = 100.0
+@export var AccelSpeed: float = 0.5
+@export var MaxRotationSpeed: float = 100.0
 
 var mat
 var rotation_speed = 0.0
@@ -19,8 +19,8 @@ var is_changing_speed = false
 
 func _ready():
 	# Material must be made unique in order to have independent mesh copies
-	mat = $Disc.get_surface_material(0).duplicate()
-	$Disc.set_surface_material(0, mat)
+	mat = $Disc.get_surface_override_material(0).duplicate()
+	$Disc.set_surface_override_material(0, mat)
 
 func _on_Engine_update_interface(values):
 	target_rotation_speed = 0.0 if not values["engine_active"] else 0.2 + values["engine_power"]*0.8

@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 # Any node can receive the "update_interface" signals from the Airplane modules
 # This can be used to show realtime representations using the same data
@@ -8,7 +8,7 @@ var target_flap_position = 0.0
 
 
 func _on_Flaps_update_interface(values):
-	target_flap_position = deg2rad(values["flap"]*45.0)
+	target_flap_position = deg_to_rad(values["flap"]*45.0)
 
 
 func _process(delta):

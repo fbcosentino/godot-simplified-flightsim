@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 # Any node can receive the "update_interface" signals from the Airplane modules

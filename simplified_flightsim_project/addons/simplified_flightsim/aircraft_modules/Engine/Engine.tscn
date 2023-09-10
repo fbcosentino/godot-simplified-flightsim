@@ -4,7 +4,7 @@
 [ext_resource path="res://example/sfx/aircraft_modules/engine/engine_start.wav" type="AudioStream" id=2]
 [ext_resource path="res://example/sfx/aircraft_modules/engine/engine.ogg" type="AudioStream" id=3]
 
-[node name="Engine" type="Spatial"]
+[node name="Engine" type="Node3D"]
 script = ExtResource( 1 )
 EngineSoundLoop = ExtResource( 3 )
 EngineSoundStart = ExtResource( 2 )

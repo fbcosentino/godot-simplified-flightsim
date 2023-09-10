@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/engine.ogg-f332c96ef4603964cf535892a0b89650.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d113roojokjhb"
+path="res://.godot/imported/engine.ogg-f332c96ef4603964cf535892a0b89650.oggvorbisstr"
 
 [deps]
 
 source_file="res://example/sfx/aircraft_modules/engine/engine.ogg"
-dest_files=[ "res://.import/engine.ogg-f332c96ef4603964cf535892a0b89650.oggstr" ]
+dest_files=["res://.godot/imported/engine.ogg-f332c96ef4603964cf535892a0b89650.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

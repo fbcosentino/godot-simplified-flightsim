@@ -8,8 +8,8 @@ signal update_interface(values)
 # You don't really *need* to use this property, as any node can receive the
 # signals. This is just a helper to automatically connect all possible signals
 # assigning the node just once 
-export(NodePath) var UINode
-onready var ui_node = get_node_or_null(UINode)
+@export var UINode: NodePath
+@onready var ui_node = get_node_or_null(UINode)
 
 var current_roll = 0.0
 var current_pitch = 0.0
@@ -20,7 +20,7 @@ var current_longitude = 0.0
 
 func _ready():
 	if ui_node:
-		connect("update_interface", ui_node, "update_interface")
+		connect("update_interface", Callable(ui_node, "update_interface"))
 	
 	ProcessPhysics = true
 
@@ -30,9 +30,9 @@ func setup(aircraft_node):
 
 func request_update_interface():
 	var message = {
-		"roll": rad2deg(current_roll),
-		"pitch": rad2deg(current_pitch),
-		"bearing": rad2deg(current_bearing),
+		"roll": rad_to_deg(current_roll),
+		"pitch": rad_to_deg(current_pitch),
+		"bearing": rad_to_deg(current_bearing),
 		"alt": aircraft.local_altitude,
 		"speed": aircraft.air_velocity,
 		"g": aircraft.local_g_force,

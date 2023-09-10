@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stow.wav-6c0d06c3966b7562e9945b9a66956b3c.sample"
+type="AudioStreamWAV"
+uid="uid://ch1k8klfyw0mq"
+path="res://.godot/imported/stow.wav-6c0d06c3966b7562e9945b9a66956b3c.sample"
 
 [deps]
 
 source_file="res://example/sfx/aircraft_modules/landing_gear/stow.wav"
-dest_files=[ "res://.import/stow.wav-6c0d06c3966b7562e9945b9a66956b3c.sample" ]
+dest_files=["res://.godot/imported/stow.wav-6c0d06c3966b7562e9945b9a66956b3c.sample"]
 
 [params]
 

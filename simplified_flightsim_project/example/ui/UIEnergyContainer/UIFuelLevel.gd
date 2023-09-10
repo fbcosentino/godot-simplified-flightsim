@@ -9,8 +9,8 @@ extends Control
 #     "energy_active": bool,           # if this energy container is connected
 # }
 
-export(Color) var ActiveColor = Color(0.9, 0.9, 0.5, 1.0)
-export(String) var Caption = "Fuel"
+@export var ActiveColor: Color = Color(0.9, 0.9, 0.5, 1.0)
+@export var Caption: String = "Fuel"
 
 func _ready():
 	$Panel/Label.text = Caption

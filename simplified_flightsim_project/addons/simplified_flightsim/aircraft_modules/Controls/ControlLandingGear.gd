@@ -1,3 +1,7 @@
+# This script is just an example of one way to implement a control module
+# the way input is handled here is by no means a requirement whatsoever
+# You can (and are actually expected to) modify this or write your own module
+
 extends AircraftModule
 class_name AircraftModule_ControlLandingGear
 
@@ -5,9 +9,9 @@ class_name AircraftModule_ControlLandingGear
 # e.g. you can use RestrictGearToTag=true and SearchTag="wheels" in the 
 # inspector to control only the gear with the "wheels" tag for landing runways,
 # while the ship could also have a "feet" gear to e.g. land upright on mud
-export(bool) var RestrictGearToTag = false
-export(String) var SearchTag = ""
-export(bool) var ControlActive = true
+@export var RestrictGearToTag: bool = false
+@export var SearchTag: String = ""
+@export var ControlActive: bool = true
 
 var landing_gear_modules = []
 
@@ -29,7 +33,7 @@ func receive_input(event):
 	
 	if (event is InputEventKey) and (not event.echo):
 		if event.pressed:
-			match event.scancode:
+			match event.keycode:
 				KEY_J:
 					send_to_landing_gears("stow")
 				KEY_M:
