@@ -1,5 +1,6 @@
-class_name Aircraft, "res://addons/simplified_flightsim/Aircraft/Aircraft_icon.png"
-extends RigidBody
+@icon("res://addons/simplified_flightsim/Aircraft/Aircraft_icon.png")
+class_name Aircraft
+extends RigidBody3D
 
 signal crashed(impact_velocity)
 signal parked
@@ -17,31 +18,31 @@ const EARTH_GRAVITY = 9.8 # for g-force calculation
 
 # Lift factor combines lift coefficient and wing area
 # Must be higher than DragFactor.z or the plane won't take off
-export(float) var LiftFactor = 0.03
-export(float) var LiftPointDistance = 0.0 # meters ahead of center of mass
+@export var LiftFactor: float = 0.03
+@export var LiftPointDistance: float = 0.0 # meters ahead of center of mass
 
 # Drag factor combines drag coefficient and reference area
-export(Vector3) var DragFactor = Vector3(1, 2, 0.02)
-export(float) var DragPointDistance = 1.0 # meters behind center of mass
+@export var DragFactor: Vector3 = Vector3(1, 2, 0.02)
+@export var DragPointDistance: float = 1.0 # meters behind center of mass
 
-export(float) var DragHeatRate = 0.1
-export(float) var RadiationCoolingRate = 1.0
+@export var DragHeatRate: float = 0.1
+@export var RadiationCoolingRate: float = 1.0
 
-export(float) var MachSpeedScaling = 1.0
-export(float) var GForceFactor = 1.0 # Used by both G-Force and Load Factor
+@export var MachSpeedScaling: float = 1.0
+@export var GForceFactor: float = 1.0 # Used by both G-Force and Load Factor
 
-export(float) var MaxTemperature = 900.0 # Celsius
-export(bool) var EnableTemperatureCalculations = false
+@export var MaxTemperature: float = 900.0 # Celsius
+@export var EnableTemperatureCalculations: bool = false
 
-export(float) var AirDensity = 1.0
-export(float) var AirTemperature = 25.0 setget set_temperature # Celsius
-onready var air_temperature_K = ZERO_C_IN_K + AirTemperature
+@export var AirDensity: float = 1.0
+@export var AirTemperature: float = 25.0: set = set_temperature
+@onready var air_temperature_K = ZERO_C_IN_K + AirTemperature
 
-export(float) var MaxLandingForce = 1.0
+@export var MaxLandingForce: float = 1.0
 
-export(float) var Gravity = 1.0 # Normalized to Earth average at sea level
-export(float) var SeaLevelFromOrigin = 0.0
-export(bool) var AltitudeEnabled = true
+@export var Gravity: float = 1.0 # Normalized to Earth average at sea level
+@export var SeaLevelFromOrigin: float = 0.0
+@export var AltitudeEnabled: bool = true
 
 # Linear world is Godot default: reference Y axis is always UP, reference -Z axis is always NORTH
 # Spherical world is real life: away from reference origin is UP, reference Y axis is magnetic NORTH
@@ -49,13 +50,13 @@ enum WorldTypes {
 	LINEAR,
 	SPHERICAL
 }
-export(WorldTypes) var WorldType = WorldTypes.LINEAR
+@export var WorldType: WorldTypes = WorldTypes.LINEAR
 
 # A Spatial-derived node used as reference for UP and NORTH
 # If not provided, the global origin and axes are used
-export(NodePath) var WorldOrientationReference
-onready var world_ref : Spatial = get_node_or_null(WorldOrientationReference)
-var internal_world_reference : Spatial
+@export var WorldOrientationReference: NodePath
+@onready var world_ref : Node3D = get_node_or_null(WorldOrientationReference)
+var internal_world_reference : Node3D
 
 var last_global_position = null
 var last_linear_velocity = null
@@ -97,17 +98,17 @@ var energy_budget_frame = {}
 var safe_colliders = []
 
 func _ready():
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame 
 	internal_world_reference = get_node_or_null("/root/WorldOrientationReference") # avoids creating more than one
 	if not internal_world_reference:
-		internal_world_reference = Spatial.new()
+		internal_world_reference = Node3D.new()
 		internal_world_reference.name = "WorldOrientationReference"
 		get_node("/root/").add_child(internal_world_reference)
 	if not world_ref:
 		world_ref = internal_world_reference
 	
-	connect("body_shape_entered", self, "_on_Aircraft_body_shape_entered")
-	connect("body_shape_exited", self, "_on_Aircraft_body_shape_exited")
+	connect("body_shape_entered", Callable(self, "_on_Aircraft_body_shape_entered"))
+	connect("body_shape_exited", Callable(self, "_on_Aircraft_body_shape_exited"))
 	
 	for child in get_children():
 		if (child is AircraftModule) or (child is AircraftModuleSpatial):
@@ -184,7 +185,10 @@ func _on_Aircraft_body_shape_exited(body_rid, body, body_shape_index, local_shap
 	
 
 func update_collision_flags():
-	var my_state = PhysicsServer.body_get_direct_state(get_rid())
+	var my_state = PhysicsServer3D.body_get_direct_state(get_rid())
+	if (not my_state):
+		return
+	
 	var contact_count = my_state.get_contact_count()
 	
 	var safe_found = false
@@ -229,11 +233,11 @@ func find_modules_by_type_and_tag(module_type: String, module_tag: String) -> Ar
 			result.append(module)
 	return result
 
-func register_safe_collider(collider: CollisionShape):
+func register_safe_collider(collider: CollisionShape3D):
 	if not collider in safe_colliders:
 		safe_colliders.append(collider)
 
-func unregister_safe_collider(collider: CollisionShape):
+func unregister_safe_collider(collider: CollisionShape3D):
 	if collider in safe_colliders:
 		safe_colliders.erase(collider)
 
@@ -245,7 +249,7 @@ func unregister_safe_collider(collider: CollisionShape):
 func prepare_physics_variables():
 	# This method is called in physics process, before modules
 	
-	if not last_global_position:
+	if last_global_position == null:
 		last_global_position = global_transform.origin
 	var delta_position = global_transform.origin - last_global_position
 	
@@ -326,7 +330,7 @@ func process_physics_frame(delta):
 	# LIFT
 	
 	var lift_vector = up_vector * lift_intensity
-	add_force(up_vector * lift_intensity, forward_vector * LiftPointDistance)
+	apply_force(lift_vector, forward_vector * LiftPointDistance)
 	
 	
 	# ================
@@ -336,7 +340,7 @@ func process_physics_frame(delta):
 	# Convert drag from local rotation to global rotation
 	var drag_vec_global_rotation = to_global(drag_intensity_vector) - global_transform.origin
 	# Apply drag
-	add_force(drag_vec_global_rotation, -forward_vector * DragPointDistance)
+	apply_force(drag_vec_global_rotation, -forward_vector * DragPointDistance)
 	
 	angular_damp = 1.0 + ((drag_intensity_vector.length_squared())*0.01)*AirDensity
 	
@@ -379,8 +383,8 @@ func process_physics_frame(delta):
 	var weight_vector = Vector3.ZERO
 	if Gravity > 0:
 		var global_gravity_direction = to_global(local_gravity_direction) - global_transform.origin
-		weight_vector = global_gravity_direction * weight * Gravity
-		add_central_force(weight_vector)
+		weight_vector = global_gravity_direction * EARTH_GRAVITY * Gravity
+		apply_central_force(weight_vector)
 	
 	# Load Factor and G-Force
 	# load factor is based on the planet's gravity, so level flight always have load factor of 1.0
@@ -412,7 +416,6 @@ func process_physics_frame(delta):
 	# PHYSICAL COLLAPSE AND STATE SIGNALS
 	
 	var is_moving_now = (air_velocity > 0.005)
-	#print("%s %s" % [is_moving_now, air_velocity])
 	# is_velocity_nonzero refers to last frame
 	if (is_velocity_nonzero) and (not is_moving_now):
 		# just stopped
@@ -488,12 +491,10 @@ func load_energy(energy_type: String, value: float) -> bool:
 	return (not is_at_least_one_container_not_full)
 
 func land(landing_velocity: float, impact_velocity: float):
-	print("Landing gear touch")
 	if landing_velocity > MaxLandingForce:
 		crash(landing_velocity)
 
 func crash(impact_velocity: float):
-	print("CRASH")
 	emit_signal("crashed", impact_velocity)
 
 

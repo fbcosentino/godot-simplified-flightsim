@@ -2,5 +2,5 @@
 
 [ext_resource path="res://addons/simplified_flightsim/aircraft_modules/LandingGear/LandingGear.gd" type="Script" id=1]
 
-[node name="LandingGear" type="Spatial"]
+[node name="LandingGear" type="Node3D"]
 script = ExtResource( 1 )

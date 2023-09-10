@@ -1,10 +1,10 @@
-extends Spatial
+extends Node3D
 
 
-export(NodePath) var TargetNode
-onready var target_node = get_node_or_null(TargetNode)
+@export var TargetNode: NodePath
+@onready var target_node = get_node_or_null(TargetNode)
 
-export(float) var RotationSpeed = 1.0
+@export var RotationSpeed: float = 1.0
 
 func _process(delta):
 	if target_node and is_instance_valid(target_node):

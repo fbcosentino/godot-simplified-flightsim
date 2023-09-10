@@ -1,21 +1,21 @@
-extends Spatial
+extends Node3D
 
 
 var template_explosion = preload("res://example/scenes/Explosion/Explosion.tscn")
 
-onready var aircraft = get_node("Aircraft")
+@onready var aircraft = get_node("Aircraft")
 
 var is_reloading_fuel = false
 
 var achievement_unlocked = false
 
 func _on_Aircraft_crashed(_impact_velocity):
-	var new_explosion = template_explosion.instance()
+	var new_explosion = template_explosion.instantiate()
 	add_child(new_explosion)
 	new_explosion.global_transform.origin = $Aircraft.global_transform.origin
 	new_explosion.explode()
 	aircraft.queue_free()
-	yield(get_tree().create_timer(2.0), "timeout")
+	await get_tree().create_timer(2.0).timeout
 	var __= get_tree().reload_current_scene()
 
 
@@ -51,4 +51,4 @@ func _physics_process(delta):
 
 
 func _on_BtnBack_pressed():
-	get_tree().change_scene("res://example/ExampleList.tscn")
+	get_tree().change_scene_to_file("res://example/ExampleList.tscn")

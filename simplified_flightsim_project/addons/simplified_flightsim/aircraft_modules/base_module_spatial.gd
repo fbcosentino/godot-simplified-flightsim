@@ -35,16 +35,17 @@
 #     process_render_frame() is called in sync with Aircraft's _process
 
 
-extends Spatial
-class_name AircraftModuleSpatial, "res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Spatial_icon.png"
+@icon("res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Spatial_icon.png")
+class_name AircraftModuleSpatial
+extends Node3D
 
-export(bool) var ReceiveInput = false
-export(bool) var ProcessPhysics = false
-export(bool) var ProcessRender = false
-export(String) var ModuleType = ""
-export(Array, String) var ModuleTags = []
-export(bool) var UsesEnergy = false
-export(String) var EnergyType = "fuel"
+@export var ReceiveInput: bool = false
+@export var ProcessPhysics: bool = false
+@export var ProcessRender: bool = false
+@export var ModuleType: String = ""
+@export var ModuleTags = [] # (Array, String)
+@export var UsesEnergy: bool = false
+@export var EnergyType: String = "fuel"
 
 var aircraft = null
 

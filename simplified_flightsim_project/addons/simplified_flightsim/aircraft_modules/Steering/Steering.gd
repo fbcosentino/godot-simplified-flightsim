@@ -7,24 +7,24 @@ enum SteeringTypes {
 	AIR_PASSIVE, # Ailerons, rudder, anything passive based on air flow
 	THRUSTED # Rocket, ions, anything not based on external environment but uses fuel
 }
-export(SteeringTypes) var SteeringType = SteeringTypes.AIR_PASSIVE
+@export var SteeringType: SteeringTypes = SteeringTypes.AIR_PASSIVE
 
-export(float) var PowerFactor = 1.0
+@export var PowerFactor: float = 1.0
 
 # Elevator distance from center
-export(float) var XPointDistance = 1.0
+@export var XPointDistance: float = 1.0
 # Rudder/thruster distance from center
-export(float) var YPointDistance = 0.5
+@export var YPointDistance: float = 0.5
 # Aileron/thruster distance from center, both sides
-export(float) var ZPointDistance = 1.0
+@export var ZPointDistance: float = 1.0
 
-export(float) var FuelRate = 1.0 # Fuel units per second per axis, at max power
+@export var FuelRate: float = 1.0 # Fuel units per second per axis, at max power
 
 # You don't really *need* to use this property, as any node can receive the
 # signals. This is just a helper to automatically connect all possible signals
 # assigning the node just once 
-export(NodePath) var UINode
-onready var ui_node = get_node_or_null(UINode)
+@export var UINode: NodePath
+@onready var ui_node = get_node_or_null(UINode)
 
 # Separate variables instead of a Vector3 for readability and semantic purposes
 # as they have completely different meanings
@@ -41,7 +41,7 @@ func _ready():
 	#EnergyType = "fuel" # obsolete, set from inspector
 	
 	if ui_node:
-		connect("update_interface", ui_node, "update_interface")
+		connect("update_interface", Callable(ui_node, "update_interface"))
 
 func setup(aircraft_node):
 	aircraft = aircraft_node
@@ -85,10 +85,10 @@ func process_physic_frame(delta):
 			force_vector_left *= aircraft.AirDensity * aircraft.air_velocity
 		
 		var thruster_rotated_position_right = aircraft.global_transform.basis.x*ZPointDistance
-		aircraft.add_force(force_vector_right, thruster_rotated_position_right)
+		aircraft.apply_force(force_vector_right, thruster_rotated_position_right)
 		
 		var thruster_rotated_position_left = -aircraft.global_transform.basis.x*ZPointDistance
-		aircraft.add_force(force_vector_left, thruster_rotated_position_left)
+		aircraft.apply_force(force_vector_left, thruster_rotated_position_left)
 	
 	
 	# =================================
@@ -114,10 +114,10 @@ func process_physic_frame(delta):
 			force_vector_down *= aircraft.AirDensity * aircraft.air_velocity
 			
 		var thruster_rotated_position_back = aircraft.global_transform.basis.z*XPointDistance
-		aircraft.add_force(force_vector_up, thruster_rotated_position_back)
+		aircraft.apply_force(force_vector_up, thruster_rotated_position_back)
 		
 		var thruster_rotated_position_front = -aircraft.global_transform.basis.z*XPointDistance
-		aircraft.add_force(force_vector_down, thruster_rotated_position_front)
+		aircraft.apply_force(force_vector_down, thruster_rotated_position_front)
 	
 	
 	# =================================
@@ -146,8 +146,8 @@ func process_physic_frame(delta):
 		var thruster_rotated_position_rfront = -aircraft.global_transform.basis.z*YPointDistance
 		
 		# Rudder axis positive turns the plane to left (positive rotation on Y axis)
-		aircraft.add_force(force_vector_rleft, thruster_rotated_position_rfront)
-		aircraft.add_force(force_vector_rright, thruster_rotated_position_rback)
+		aircraft.apply_force(force_vector_rleft, thruster_rotated_position_rfront)
+		aircraft.apply_force(force_vector_rright, thruster_rotated_position_rback)
 
 func set_x(value: float):
 	axis_x = value

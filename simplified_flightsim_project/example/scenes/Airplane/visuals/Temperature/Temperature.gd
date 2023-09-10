@@ -1,18 +1,18 @@
-extends Spatial
+extends Node3D
 
-export(NodePath) var AircraftNode
-onready var aircraft = get_node_or_null(AircraftNode)
+@export var AircraftNode: NodePath
+@onready var aircraft = get_node_or_null(AircraftNode)
 
-export(float) var StartShowingTemperature = 100.0
+@export var StartShowingTemperature: float = 100.0
 
-var mat : SpatialMaterial
+var mat : StandardMaterial3D
 
 var is_showing = false
 
 func _ready():
 	# Material must be made unique in order to have independent mesh copies
-	mat = $MeshInstance.get_surface_material(0).duplicate()
-	$MeshInstance.set_surface_material(0, mat)
+	mat = $MeshInstance3D.get_surface_override_material(0).duplicate()
+	$MeshInstance3D.set_surface_override_material(0, mat)
 
 func _process(_delta):
 	if is_instance_valid(aircraft):
@@ -21,9 +21,9 @@ func _process(_delta):
 			if not is_showing:
 				is_showing = true
 				show()
-			mat.albedo_color = lerp(Color.black, Color.white, temp_factor)
+			mat.albedo_color = lerp(Color.BLACK, Color.WHITE, temp_factor)
 		
 		elif is_showing:
 			is_showing = false
 			hide()
-			mat.albedo_color = Color.black
+			mat.albedo_color = Color.BLACK

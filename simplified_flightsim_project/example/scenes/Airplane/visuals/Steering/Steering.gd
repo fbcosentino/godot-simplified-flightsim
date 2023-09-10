@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 
@@ -16,9 +16,9 @@ func _on_Steering_update_interface(values):
 		target_elevator_angle = 0.0
 		target_rudder_angle = 0.0
 	else:
-		target_aileron_angle = deg2rad(values["axis_z"]*60.0)
-		target_elevator_angle = deg2rad(values["axis_x"]*60.0)
-		target_rudder_angle = deg2rad(values["axis_y"]*60.0)
+		target_aileron_angle = deg_to_rad(values["axis_z"]*60.0)
+		target_elevator_angle = deg_to_rad(values["axis_x"]*60.0)
+		target_rudder_angle = deg_to_rad(values["axis_y"]*60.0)
 
 func _process(delta):
 	$AileronLeft.rotation.x = lerp($AileronLeft.rotation.x, target_aileron_angle, delta*5.0)

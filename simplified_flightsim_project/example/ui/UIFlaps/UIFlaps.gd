@@ -6,4 +6,4 @@ extends Control
 # }
 
 func update_interface(values: Dictionary):
-	$Panel/FlapDial.rect_rotation = values["flap"]*(-45)
+	$Panel/FlapDial.rotation_degrees = values["flap"]*(-45)

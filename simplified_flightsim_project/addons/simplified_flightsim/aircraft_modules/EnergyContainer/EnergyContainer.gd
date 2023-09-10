@@ -3,21 +3,21 @@ class_name AircraftModule_EnergyContainer
 
 signal update_interface(values)
 
-export(bool) var ContainerActive = true
+@export var ContainerActive: bool = true
 
-export(float) var MaxCapacity = 100.0
+@export var MaxCapacity: float = 100.0
 
-onready var current_level = MaxCapacity
+@onready var current_level = MaxCapacity
 
 # You don't really *need* to use this property, as any node can receive the
 # signals. This is just a helper to automatically connect all possible signals
 # assigning the node just once 
-export(NodePath) var UINode
-onready var ui_node = get_node_or_null(UINode)
+@export var UINode: NodePath
+@onready var ui_node = get_node_or_null(UINode)
 
 func _ready():
 	if ui_node:
-		connect("update_interface", ui_node, "update_interface")
+		connect("update_interface", Callable(ui_node, "update_interface"))
 	
 	ModuleType = "energy_container"
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/engine_start.wav-64779531ac1720a035166b2713ca786f.sample"
+type="AudioStreamWAV"
+uid="uid://bouv88p2spjty"
+path="res://.godot/imported/engine_start.wav-64779531ac1720a035166b2713ca786f.sample"
 
 [deps]
 
 source_file="res://example/sfx/aircraft_modules/engine/engine_start.wav"
-dest_files=[ "res://.import/engine_start.wav-64779531ac1720a035166b2713ca786f.sample" ]
+dest_files=["res://.godot/imported/engine_start.wav-64779531ac1720a035166b2713ca786f.sample"]
 
 [params]
 

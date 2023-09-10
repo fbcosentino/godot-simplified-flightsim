@@ -7,20 +7,20 @@ class_name AircraftModule_Flaps
 signal update_interface(values)
 
 # When flap is fully deployed, lift is multiplied by this factor
-export(float) var LiftFlapFactor = 1.2
+@export var LiftFlapFactor: float = 1.2
 
 # When flap is fully deployed, forward drag is multiplied by this factor
-export(float) var DragFlapFactor = 1.25
+@export var DragFlapFactor: float = 1.25
 
-export(float) var MoveSpeed = 1.0 # movement span per second
+@export var MoveSpeed: float = 1.0 # movement span per second
 
 # You don't really *need* to use this property, as any node can receive the
 # signals. This is just a helper to automatically connect all possible signals
 # assigning the node just once 
-export(NodePath) var UINode
-onready var ui_node = get_node_or_null(UINode)
+@export var UINode: NodePath
+@onready var ui_node = get_node_or_null(UINode)
 
-export(AudioStream) var FlapSoundLoop
+@export var FlapSoundLoop: AudioStream
 
 var sfx_player = null
 
@@ -38,7 +38,7 @@ func _ready():
 	ModuleType = "flaps"
 	
 	if ui_node:
-		connect("update_interface", ui_node, "update_interface")
+		connect("update_interface", Callable(ui_node, "update_interface"))
 
 func setup(aircraft_node):
 	aircraft = aircraft_node

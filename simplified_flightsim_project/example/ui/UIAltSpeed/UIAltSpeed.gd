@@ -3,8 +3,8 @@
 
 extends Control
 
-export(NodePath) var AircraftNode
-onready var aircraft = get_node_or_null(AircraftNode)
+@export var AircraftNode: NodePath
+@onready var aircraft = get_node_or_null(AircraftNode)
 
 func _process(_delta):
 	if aircraft and is_instance_valid(aircraft):

@@ -1,3 +1,7 @@
+# This script is just an example of one way to implement a control module
+# the way input is handled here is by no means a requirement whatsoever
+# You can (and are actually expected to) modify this or write your own module
+
 extends AircraftModule
 class_name AircraftModule_ControlEngine
 
@@ -7,17 +11,17 @@ class_name AircraftModule_ControlEngine
 # e.g. you can use RestrictEngineToTag=true and SearchTag="left" in the 
 # inspector to control only the engines with the "left" tag (and a separate
 # duplicate control for "right")
-export(bool) var RestrictEngineToTag = false
-export(String) var SearchTag = ""
-export(bool) var ControlActive = true
+@export var RestrictEngineToTag: bool = false
+@export var SearchTag: String = ""
+@export var ControlActive: bool = true
 
-export(KeyScancodes) var KeyStart = KeyScancodes.KEY_P
-export(KeyScancodes) var KeyStop = KeyScancodes.KEY_O
-export(KeyScancodes) var KeyUp = KeyScancodes.KEY_F
-export(KeyScancodes) var KeyDown = KeyScancodes.KEY_V
-export(KeyScancodes) var KeyMax = KeyScancodes.KEY_3
-export(KeyScancodes) var KeyMid = KeyScancodes.KEY_2
-export(KeyScancodes) var KeyMin = KeyScancodes.KEY_1
+@export var KeyStart: KeyScancodes = KeyScancodes.KEY_P
+@export var KeyStop: KeyScancodes = KeyScancodes.KEY_O
+@export var KeyUp: KeyScancodes = KeyScancodes.KEY_F
+@export var KeyDown: KeyScancodes = KeyScancodes.KEY_V
+@export var KeyMax: KeyScancodes = KeyScancodes.KEY_3
+@export var KeyMid: KeyScancodes = KeyScancodes.KEY_2
+@export var KeyMin: KeyScancodes = KeyScancodes.KEY_1
 
 var engine_modules = []
 
@@ -39,7 +43,7 @@ func receive_input(event):
 	
 	if (event is InputEventKey) and (not event.echo):
 		if event.pressed:
-			match event.scancode:
+			match event.keycode:
 				KeyStart:
 					send_to_engines("engine_start")
 				KeyStop:

@@ -1,24 +1,24 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dtro3njwarh1h"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Control
 
 
 
 func _on_BtnExample1_pressed():
-	get_tree().change_scene(\"res://example/Example1_Simple.tscn\")
+	get_tree().change_scene_to_file(\"res://example/Example1_Simple.tscn\")
 
 
 func _on_BtnExample2_pressed():
-	get_tree().change_scene(\"res://example/Example2_Complex.tscn\")
+	get_tree().change_scene_to_file(\"res://example/Example2_Complex.tscn\")
 
 
 func _on_BtnExample3_pressed():
-	get_tree().change_scene(\"res://example/Example3_Helicopter.tscn\")
+	get_tree().change_scene_to_file(\"res://example/Example3_Helicopter.tscn\")
 
 
 func _on_BtnExample4_pressed():
-	get_tree().change_scene(\"res://example/Example4_Space.tscn\")
+	get_tree().change_scene_to_file(\"res://example/Example4_Space.tscn\")
 
 
 func _on_BtnRepo_pressed():
@@ -26,50 +26,49 @@ func _on_BtnRepo_pressed():
 "
 
 [node name="ExampleList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("1")
 
 [node name="BtnExample1" type="Button" parent="."]
-margin_left = 35.0
-margin_top = 27.0
-margin_right = 293.0
-margin_bottom = 102.0
+layout_mode = 0
+offset_left = 35.0
+offset_top = 19.0
+offset_right = 293.0
+offset_bottom = 94.0
 text = "Example 1 - Simple"
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="LabelExample1" type="Label" parent="BtnExample1"]
-margin_left = 279.0
-margin_top = 4.0
-margin_right = 752.0
-margin_bottom = 74.0
+layout_mode = 0
+offset_left = 279.0
+offset_top = -6.0
+offset_right = 752.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 12
 text = "Single Engine
 Single fuel tank - always connected
 Steering, Flaps, landing gear
 Basic instruments"
 
 [node name="BtnExample2" type="Button" parent="."]
-margin_left = 35.0
-margin_top = 163.0
-margin_right = 293.0
-margin_bottom = 238.0
+layout_mode = 0
+offset_left = 35.0
+offset_top = 179.0
+offset_right = 293.0
+offset_bottom = 254.0
 text = "Example 2 - Complex"
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="LabelExample1" type="Label" parent="BtnExample2"]
-margin_left = 279.0
-margin_top = 4.0
-margin_right = 752.0
-margin_bottom = 74.0
+layout_mode = 0
+offset_left = 279.0
+offset_top = -27.0
+offset_right = 752.0
+offset_bottom = 134.0
+theme_override_font_sizes/font_size = 12
 text = "Four Independent Engines
 Three fuel tanks with independent connection/disconnection
 Electrically powered steering
@@ -79,21 +78,20 @@ Fuselage heating due to friction, heat dissipation to surroundings
 Air density and temperature based on altitude"
 
 [node name="BtnExample3" type="Button" parent="."]
-margin_left = 35.0
-margin_top = 315.0
-margin_right = 293.0
-margin_bottom = 390.0
+layout_mode = 0
+offset_left = 35.0
+offset_top = 347.0
+offset_right = 293.0
+offset_bottom = 422.0
 text = "Example 3 - Helicopter"
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="LabelExample1" type="Label" parent="BtnExample3"]
-margin_left = 279.0
-margin_top = 4.0
-margin_right = 752.0
-margin_bottom = 74.0
+layout_mode = 0
+offset_left = 279.0
+offset_top = -4.0
+offset_right = 752.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 12
 text = "Vertical engine (demonstration of zero lift/no wing aircraft)
 Single fuel tank - always connected
 Steering not based on forward velocity
@@ -101,21 +99,20 @@ Landing gear
 Basic instruments"
 
 [node name="BtnExample4" type="Button" parent="."]
-margin_left = 35.0
-margin_top = 467.0
-margin_right = 293.0
-margin_bottom = 542.0
+layout_mode = 0
+offset_left = 35.0
+offset_top = 515.0
+offset_right = 293.0
+offset_bottom = 590.0
 text = "Example 4 - Spaceship"
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="LabelExample1" type="Label" parent="BtnExample4"]
-margin_left = 279.0
-margin_top = 4.0
-margin_right = 752.0
-margin_bottom = 74.0
+layout_mode = 0
+offset_left = 279.0
+offset_top = -20.0
+offset_right = 959.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 12
 text = "Two engines forward, one engine up
 Three independent fuel tanks
 Steering using fuelled thrusters
@@ -125,11 +122,13 @@ Spherical world with gravity, altitude, air density, temperautre, attitude (roll
 calculated on the spherical planet. (Can travel between two nearby planets.)"
 
 [node name="BtnRepo" type="Button" parent="."]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -356.0
-margin_bottom = 30.0
+offset_left = -356.0
+offset_bottom = 30.0
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 14
 text = "github.com/fbcosentino/godot-simplified-flightsim"
 flat = true
 

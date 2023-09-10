@@ -34,57 +34,59 @@
 #     process_render_frame() is called in sync with Aircraft's _process
 
 
+@icon("res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Node_icon.png")
+class_name AircraftModule
 extends Node
-class_name AircraftModule, "res://addons/simplified_flightsim/aircraft_modules/AircraftModule_Node_icon.png"
+
 
 enum KeyScancodes {
 	KEY_NONE = -1,
-	KEY_SPACE = KEY_SPACE,
-	KEY_0 = KEY_0,
-	KEY_1 = KEY_1,
-	KEY_2 = KEY_2,
-	KEY_3 = KEY_3,
-	KEY_4 = KEY_4,
-	KEY_5 = KEY_5,
-	KEY_6 = KEY_6,
-	KEY_7 = KEY_7,
-	KEY_8 = KEY_8,
-	KEY_9 = KEY_9,
-	KEY_A = KEY_A,
-	KEY_B = KEY_B,
-	KEY_C = KEY_C,
-	KEY_D = KEY_D,
-	KEY_E = KEY_E,
-	KEY_F = KEY_F,
-	KEY_G = KEY_G,
-	KEY_H = KEY_H,
-	KEY_I = KEY_I,
-	KEY_J = KEY_J,
-	KEY_K = KEY_K,
-	KEY_L = KEY_L,
-	KEY_M = KEY_M,
-	KEY_N = KEY_N,
-	KEY_O = KEY_O,
-	KEY_P = KEY_P,
-	KEY_Q = KEY_Q,
-	KEY_R = KEY_R,
-	KEY_S = KEY_S,
-	KEY_T = KEY_T,
-	KEY_U = KEY_U,
-	KEY_V = KEY_V,
-	KEY_W = KEY_W,
-	KEY_X = KEY_X,
-	KEY_Y = KEY_Y,
-	KEY_Z = KEY_Z,
+	KEY_SPACE = Key.KEY_SPACE,
+	KEY_0 = Key.KEY_0,
+	KEY_1 = Key.KEY_1,
+	KEY_2 = Key.KEY_2,
+	KEY_3 = Key.KEY_3,
+	KEY_4 = Key.KEY_4,
+	KEY_5 = Key.KEY_5,
+	KEY_6 = Key.KEY_6,
+	KEY_7 = Key.KEY_7,
+	KEY_8 = Key.KEY_8,
+	KEY_9 = Key.KEY_9,
+	KEY_A = Key.KEY_A,
+	KEY_B = Key.KEY_B,
+	KEY_C = Key.KEY_C,
+	KEY_D = Key.KEY_D,
+	KEY_E = Key.KEY_E,
+	KEY_F = Key.KEY_F,
+	KEY_G = Key.KEY_G,
+	KEY_H = Key.KEY_H,
+	KEY_I = Key.KEY_I,
+	KEY_J = Key.KEY_J,
+	KEY_K = Key.KEY_K,
+	KEY_L = Key.KEY_L,
+	KEY_M = Key.KEY_M,
+	KEY_N = Key.KEY_N,
+	KEY_O = Key.KEY_O,
+	KEY_P = Key.KEY_P,
+	KEY_Q = Key.KEY_Q,
+	KEY_R = Key.KEY_R,
+	KEY_S = Key.KEY_S,
+	KEY_T = Key.KEY_T,
+	KEY_U = Key.KEY_U,
+	KEY_V = Key.KEY_V,
+	KEY_W = Key.KEY_W,
+	KEY_X = Key.KEY_X,
+	KEY_Y = Key.KEY_Y,
+	KEY_Z = Key.KEY_Z,
 }
 
-export(bool) var ReceiveInput = false
-export(bool) var ProcessPhysics = false
-export(bool) var ProcessRender = false
-export(String) var ModuleType = ""
-export(Array, String) var ModuleTags = []
-export(bool) var UsesEnergy = false
-export(String) var EnergyType = "fuel"
+@export var ReceiveInput: bool = false
+@export var ProcessPhysics: bool = false
+@export var ProcessRender: bool = false
+@export var ModuleType: String = ""
+@export var ModuleTags = [] # (Array, String)
+@export var UsesEnergy: bool = false
+@export var EnergyType: String = "fuel"
 
 var aircraft = null
 
