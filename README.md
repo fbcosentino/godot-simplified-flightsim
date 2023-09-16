@@ -18,7 +18,7 @@ This library is very flexible and covers a wide range of vehicle types, by being
 
 The `Aircraft` node _per se_ does very little: only takes care of things happening to the fuselage itself (lift, drag, temperature, etc), and routes energy/fuel between modules. _Everything_ else is done by modules. You need an engine? Put an engine module. You need the player to control that engine (turn on, off, speed)? Put an engine control module. You need to steer the plane? Put a steering module and control it with a steering control module. Fuel? Fuel tank module.
 
-![Scene tree showing modular system](./documentation_images/scene_tree_aircraft.png)
+![Scene tree showing modular system](./docs/scene_tree_aircraft.png)
 
 This way, different combinations of modules result in different aircrafts. E.g. an airplane would have an air-based engine (e.g. propeller), which is affected by air density, while a spacecraft would have a rocket based engine, which would work regardless of air density, but is less efficient. Or an _aileron_ steering module would be passive, but only works in air, while a thruster based module works in zero speed, but uses fuel.
 
@@ -31,24 +31,24 @@ The examples are:
 
 - A simple airplane: one engine, one fuel tank (always connected), steering, flaps and landing gear, and ye olde instruments. Runway refuels your tank.
 
-![Example 1 - Simple Plane](./documentation_images/example1_simple.png)
+![Example 1 - Simple Plane](./docs/example1_simple.png)
 
 
 - A complex airplane: four engines (two each wing) with independent control, three fuel tanks with independent connection/disconnection control, steering system running on electricity, one central battery (always connected), flaps, landing gear, fuselage heating due to air friction and heat dissipation to surroundings, and air density and temperature based on altitude, and instruments. Runway refuels connected tanks and charging base refils battery. Also demonstrates the engine modules respect their 3D positions in the plane model.
 
-![Example 2 - Complex Plane](./documentation_images/example2_complex.png)
+![Example 2 - Complex Plane](./docs/example2_complex.png)
 
 
 - Helicopter:  one vertical engine, one fuel tank (always connected), steering not based on forward velocity, landing gear, and instruments. Demonstrates the engine modules respect their node rotation in the aircraft model, and that the simulation can work with zero lift (no fixed wing). The helicopter example represents all "copters" (e.g. quadcopter drones) as they all work similarly. Runway/pad refuels tank.
 
-![Example 3 - Helicopter](./documentation_images/example3_helicopter.png)
+![Example 3 - Helicopter](./docs/example3_helicopter.png)
 
 
 
 - Spaceship: two engines forward, one up, three independent fuel tanks, steering using fuelled thrusters, landing gear, instruments, fuselage heating calculations. This example demonstrates the use of spherical world: the gravity, altitude, air density and temperature, as well as the attitude (roll, pitch, compass bearing) are all calculated based on the location and rotation of a spherical planet (so you can actually land in the exact north or south poles and compass goes crazy). There are two planets each with their radius of influence, so all these parameters are only in effect when you are within the vicinity of that planet, and you can travel back and forth between both. When you are not in the area of either of the planets, gravity and air density are zero, and external temperature is absolute zero K (-273.15 C).
 
-![Example 4 - Spaceship 1](./documentation_images/example4_space1.png)
-![Example 4 - Spaceship 2](./documentation_images/example4_space2.png)
+![Example 4 - Spaceship 1](./docs/example4_space1.png)
+![Example 4 - Spaceship 2](./docs/example4_space2.png)
 
 
 ----
@@ -68,14 +68,14 @@ The following parameters can be set:
 
 - `Lift Point Distance`: To simplify calculations and avoid wing distribution headaches, all lift is applied at a single point and wings are always symmetrical (left = right). Usually applying lift in the airplane origin (center of mass) works well, but if you need you can adjust the point (in the Z axis) where the lift is applied. This is a distance from center, where positive is towards the nose, and causes the plane to pitch up faster with lift. If in doubt, leave at `0`.
 
-![](./documentation_images/lift_point.png)
+![](./docs/lift_point.png)
 
 
 - `Drag Factor`: how much drag happens across each direction - `x` is the drag for wind hitting the side of the aircraft, `y` is the vertical drag, and `z` is the front drag. Due to wing shape, front drag is the least and must be less than the lift or the plane won't take off. Usually vertical drag is the largest as the vertical wind hits the wing surfaces directly.
 
 - `Drag Point Distance`: the logic is the same as the lift, but unlike lift, the drag must be applied away from the origin to simulate the self-correcting effect of the aircraft tail. Just like the feathers in the back of an arrow, the higher air resistance in the tail when the plane is not aligned to velocity rotates the plane back to the velocity direction. By simply applying the drag force at a point behind the center we avoid all tail aerodynamic calculations. This _must not be zero_ and the largest the number, the more efficient the tail. The distance doesn't have to be inside the aircraft model.
 
-![](./documentation_images/drag_point.png)
+![](./docs/drag_point.png)
 
 
 - `Drag Heat Rate`: How fast the fuselage heats up at high speeds and cools down from colder winds (high number = bad thermal isolation).
@@ -131,7 +131,7 @@ Modules can find each other via module type and tags: both are `String` identifi
 
 The tasks are decoupled (between action and control modules) to allow switching modules without unnecessary work on shared parts (e.g. replacing the type of landing gear doesn't need rework on input processing, UI, etc), but also to allow cases when modules and their controls are not 1:1. The _Example 4 - Spaceship_ demonstrates this: there is a group of engines "forward" with the "left" and "right" engines, and a "bottom" engine, so there are three `Engine` modules, but there are four `ControlEngine` modules: one for each individual engine (using the tags "left", "right", "bottom") and one to simultaneously control both the forward engines (using the "forward" tag).
 
-![](./documentation_images/modules_control_diagram.png)
+![](./docs/modules_control_diagram.png)
 
 You must use the modules' own system to implement tasks (instead of Godot's internal `_input()`, `_physics_process(delta)`, etc) because the aircraft has to be changed/interacted at the correct times for it to work properly - so the aircraft calls the module methods, not the game engine. E.g: on each physics frame, the aircraft calculates internal state variables, then calls the modules' `process_physic_frame(delta)` method, and then applies lift and drag using the values (optionally) modified by the modules (or externally). So any physics in the modules _must_ be in their `process_physic_frame` method, not in `_physics_process`. Same for everything else: the logic presented here must be respected.
 
@@ -347,7 +347,7 @@ There can be only one `Steering` module at a time in an aircraft. All `Steering`
 
 - `XPointDistance`, `YPointDistance` and `ZPointDistance`: the distance for forces applied for `x`, `y` and `z` rotations respectively. This works the same way as drag application point: force is applied this distance from origin, translating into torque (rotation). The further from the center, the more efficient the steering.
 
-![](./documentation_images/steering_distance.png)
+![](./docs/steering_distance.png)
 
 - `Uses Energy`: if `true`, using this steering system consumes energy. If then the energy is not available, module ceases to work
 
