@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ba1q1fbp0drn8" path="res://example/ui/back_bg9.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://btekexp2jh7kq" path="res://example/ui/panel_bg9.png" id="2"]
-[ext_resource type="Script" path="res://example/ui/UIEnergyContainer/UIFuelLevel.gd" id="3"]
+[ext_resource type="Script" uid="uid://pxvraowb2y5w" path="res://example/ui/UIEnergyContainer/UIFuelLevel.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://drtlaesfdwfor" path="res://example/ui/back_fg9.png" id="4"]
 
 [node name="UIFuelLevel" type="Control"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b1g724kq6318l"]
 
-[ext_resource path="res://example/scenes/CameraTripod/CameraTripod.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://llvt0gtq2k8c" path="res://example/scenes/CameraTripod/CameraTripod.gd" id="1"]
 
 [node name="CameraTripod" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 near = 0.1
 far = 30000.0

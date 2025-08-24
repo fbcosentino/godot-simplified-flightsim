@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://nhbm7re0glcb"]
 
-[ext_resource type="Script" path="res://example/scenes/Airplane/visuals/LandingGear/LandingGear.gd" id="1"]
+[ext_resource type="Script" uid="uid://ctnq7mexohc8t" path="res://example/scenes/Airplane/visuals/LandingGear/LandingGear.gd" id="1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vftg6"]
 albedo_color = Color(0.603922, 0.603922, 0.603922, 1)
@@ -101,8 +101,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q775d"]
 _data = {
-"Deploy": SubResource("6"),
-"Stow": SubResource("5")
+&"Deploy": SubResource("6"),
+&"Stow": SubResource("5")
 }
 
 [node name="LandingGear" type="Node3D"]

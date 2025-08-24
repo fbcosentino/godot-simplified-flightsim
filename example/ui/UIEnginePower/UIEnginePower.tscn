@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu2hixfhu8ndm"]
 
 [ext_resource type="Texture2D" uid="uid://btekexp2jh7kq" path="res://example/ui/panel_bg9.png" id="1"]
-[ext_resource type="Script" path="res://example/ui/UIEnginePower/UIEnginePower.gd" id="2"]
+[ext_resource type="Script" uid="uid://brbff6cvpdalc" path="res://example/ui/UIEnginePower/UIEnginePower.gd" id="2"]
 
 [node name="UIEnginePower" type="Control"]
 layout_mode = 3

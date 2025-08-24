@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://c0g8yaf70ljy2"]
 
-[ext_resource path="res://addons/simplified_flightsim/aircraft_modules/Controls/ControlFlaps.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://om06yw3lak6c" path="res://addons/simplified_flightsim/aircraft_modules/Controls/ControlFlaps.gd" id="1"]
 
 [node name="ControlFlaps" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")

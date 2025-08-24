@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://hx1cqhset1p1" path="res://example/ui/UILandingGear/lgear_down.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://doj1lfwvklqht" path="res://example/ui/UILandingGear/lgear_stowing.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bj75hc85ajy6l" path="res://example/ui/UILandingGear/lgear_deploying.png" id="5"]
-[ext_resource type="Script" path="res://example/ui/UILandingGear/UILandingGear.gd" id="6"]
+[ext_resource type="Script" uid="uid://ch1yq82k3ww1f" path="res://example/ui/UILandingGear/UILandingGear.gd" id="6"]
 
 [node name="UILandingGear" type="Control"]
 layout_mode = 3

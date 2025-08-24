@@ -1,21 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bgan3cw2iq6hy"]
 
-[ext_resource path="res://example/scenes/Airplane/visuals/Flaps/Flaps.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cc1p8vb62jox" path="res://example/scenes/Airplane/visuals/Flaps/Flaps.gd" id="1"]
 
-[sub_resource type="BoxMesh" id=1]
-size = Vector3( 1.8, 0.1, 0.5 )
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(1.8, 0.1, 0.5)
 
 [node name="Flaps" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="FlapRotation" type="Node3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305994, 0.21299 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305994, 0.21299)
 
 [node name="MeshInstance3" type="MeshInstance3D" parent="FlapRotation"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, 0.262 )
-mesh = SubResource( 1 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, 0.262)
+mesh = SubResource("1")
 
 [node name="MeshInstance4" type="MeshInstance3D" parent="FlapRotation"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 0, 0.262 )
-mesh = SubResource( 1 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 0, 0.262)
+mesh = SubResource("1")
 skeleton = NodePath("")

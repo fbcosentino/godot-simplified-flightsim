@@ -2,6 +2,18 @@
 # the way input is handled here is by no means a requirement whatsoever
 # You can (and are actually expected to) modify this or write your own module
 
+# ControlFlaps.gd -> shows an example of hardcoded key input via Input.is_key_pressed()
+#   passing a keycode
+# 
+# ControlLandingGear.gd -> shows an example of hardcoded key input via matching
+#   event.keycode against a list of keycodes
+# 
+# ControlEnergyContainer.gd and ControlEngine.gd -> show example of configuring key inputs
+#   via keycodes assigned via @export var from a list of keys
+# 
+# ControlSteering.gd -> shows an example of input handling via input map from the Godot project
+#   settings (which is probably what you should do for a regular game)
+
 extends AircraftModule
 class_name AircraftModule_ControlEnergyContainer
 

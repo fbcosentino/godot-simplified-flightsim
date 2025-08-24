@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpna5btnwpvpr"]
 
-[ext_resource type="Script" path="res://example/scenes/Airplane/visuals/Engine/Engine.gd" id="1"]
+[ext_resource type="Script" uid="uid://dtd4yj3swxfii" path="res://example/scenes/Airplane/visuals/Engine/Engine.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c4frdb71hah6s" path="res://example/textures/fire_gradient.png" id="2_qam1w"]
 
 [sub_resource type="SphereMesh" id="1"]

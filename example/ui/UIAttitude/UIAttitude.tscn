@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhg4sb4ifrvh8"]
 
-[ext_resource type="Script" path="res://example/ui/UIAttitude/UIAttitude.gd" id="1"]
+[ext_resource type="Script" uid="uid://cb1w1id0db652" path="res://example/ui/UIAttitude/UIAttitude.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://btekexp2jh7kq" path="res://example/ui/panel_bg9.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://ba1q1fbp0drn8" path="res://example/ui/back_bg9.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://drit0el54v3vg" path="res://example/ui/UIAttitude/scale.png" id="4"]

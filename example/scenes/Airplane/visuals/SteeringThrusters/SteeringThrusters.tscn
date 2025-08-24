@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmx18s8a4vo04"]
 
-[ext_resource type="Script" path="res://example/scenes/Airplane/visuals/SteeringThrusters/SteeringThrusters.gd" id="1"]
+[ext_resource type="Script" uid="uid://bmix8ftaigdbu" path="res://example/scenes/Airplane/visuals/SteeringThrusters/SteeringThrusters.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c4frdb71hah6s" path="res://example/textures/fire_gradient.png" id="2_2gh4a"]
 
 [sub_resource type="CylinderMesh" id="47"]
